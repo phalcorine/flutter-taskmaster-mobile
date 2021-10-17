@@ -1,8 +1,10 @@
-# taskmaster_mobile
+# Task Master (Flutter) Mobile Application
 
 A task management mobile application built using Flutter.
 
-The application talks to this api: https://phalcorine-taskmaster-api.herokuapp.com/api
+The application talks to this API: https://phalcorine-taskmaster-api.herokuapp.com/api
+
+The source code for the API can be found here: https://github.com/phalcorine/symfony-taskmaster-api
 
 ## Getting Started
 
