@@ -106,7 +106,7 @@ class LoginFormViewModel extends StateNotifier<LoginFormModel> {
         username: state.email.value, password: state.password.value);
     try {
       final response = await authService.login(request);
-      final responseText = 'Access Token: ${response.token}';
+      const responseText = 'Login Successful';
       // 'Full Name: ${response.fullName}. Access Token: ${response.accessToken}.';
 
       // Store the access token
