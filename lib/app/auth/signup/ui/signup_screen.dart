@@ -35,8 +35,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = ref.watch(signupFormViewModelProvider);
-    final controller = ref.watch(signupFormViewModelProvider.notifier);
+    final model = ref.watch(signupFormViewModelProvider);
+    final viewModel = ref.watch(signupFormViewModelProvider.notifier);
 
     final _showPassword = ref.watch(signupFormPasswordVisibleStateProvider);
     final _toggleShowPassword =
@@ -72,11 +72,11 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               TextField(
                 controller: _fullNameController,
                 decoration: InputDecoration(
-                  errorText: viewModel.fullName.errorText,
+                  errorText: model.fullName.errorText,
                   labelText: 'Full Name',
                 ),
                 keyboardType: TextInputType.name,
-                onChanged: controller.validateFullName,
+                onChanged: viewModel.validateFullName,
               ),
               const SizedBox(
                 height: 10,
@@ -84,11 +84,11 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  errorText: viewModel.email.errorText,
+                  errorText: model.email.errorText,
                   labelText: 'Email',
                 ),
                 keyboardType: TextInputType.emailAddress,
-                onChanged: controller.validateEmail,
+                onChanged: viewModel.validateEmail,
               ),
               const SizedBox(
                 height: 10,
@@ -96,7 +96,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                    errorText: viewModel.password.errorText,
+                    errorText: model.password.errorText,
                     labelText: 'Password',
                     suffixIcon: IconButton(
                       icon: Icon(_showPassword.state
@@ -106,7 +106,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           !_toggleShowPassword.state,
                     )),
                 keyboardType: TextInputType.visiblePassword,
-                onChanged: controller.validatePassword,
+                onChanged: viewModel.validatePassword,
                 obscureText: !_showPassword.state,
               ),
               const SizedBox(

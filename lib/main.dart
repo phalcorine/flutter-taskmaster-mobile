@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taskmaster_mobile/app/auth/login/ui/login_screen.dart';
 import 'package:taskmaster_mobile/app/auth/signup/ui/signup_screen.dart';
+import 'package:taskmaster_mobile/app/tasks/add/ui/task_add_screen.dart';
+import 'package:taskmaster_mobile/app/tasks/list/ui/task_list_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignupScreen.routeName: (context) => const SignupScreen(),
+        TaskListScreen.routeName: (context) => const TaskListScreen(),
+        TaskAddScreen.routeName: (context) => const TaskAddScreen(),
       },
     );
   }

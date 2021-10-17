@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taskmaster_mobile/app/auth/login/providers.dart';
 import 'package:taskmaster_mobile/app/auth/signup/ui/signup_screen.dart';
 import 'package:taskmaster_mobile/app/shared/ui/models/forms.dart';
+import 'package:taskmaster_mobile/app/tasks/list/ui/task_list_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,8 +32,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = ref.watch(loginFormViewModelProvider);
-    final controller = ref.watch(loginFormViewModelProvider.notifier);
+    final model = ref.watch(loginFormViewModelProvider);
+    final viewModel = ref.watch(loginFormViewModelProvider.notifier);
 
     final _showPassword = ref.watch(loginFormPasswordVisibleStateProvider);
     final _toggleShowPassword =
@@ -43,6 +44,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.successMessage)));
         ref.read(loginFormViewModelProvider.notifier).refresh();
+        Navigator.of(context).pushNamed(TaskListScreen.routeName);
       }
 
       if (state.formState == AppFormState.failure) {
@@ -67,11 +69,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  errorText: viewModel.email.errorText,
+                  errorText: model.email.errorText,
                   labelText: 'Email',
                 ),
                 keyboardType: TextInputType.emailAddress,
-                onChanged: controller.validateEmail,
+                onChanged: viewModel.validateEmail,
               ),
               const SizedBox(
                 height: 10,
@@ -79,7 +81,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                    errorText: viewModel.password.errorText,
+                    errorText: model.password.errorText,
                     labelText: 'Password',
                     suffixIcon: IconButton(
                       icon: Icon(_showPassword.state
@@ -89,7 +91,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           !_toggleShowPassword.state,
                     )),
                 keyboardType: TextInputType.visiblePassword,
-                onChanged: controller.validatePassword,
+                onChanged: viewModel.validatePassword,
                 obscureText: !_showPassword.state,
               ),
               const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:taskmaster_mobile/app/auth/providers/auth_service_provider.dart';
+import 'package:taskmaster_mobile/app/shared/persistence/api_token_storage.dart';
 import 'package:taskmaster_mobile/app/shared/ui/models/forms.dart';
 
 // Providers
@@ -7,7 +8,8 @@ final loginFormViewModelProvider =
     StateNotifierProvider.autoDispose<LoginFormViewModel, LoginFormModel>(
         (ref) {
   final authService = ref.watch(authServiceProvider);
-  return LoginFormViewModel(authService);
+  final tokenStorageManager = ref.watch(apiTokenStorageProvider);
+  return LoginFormViewModel(authService, tokenStorageManager);
 });
 
 final loginFormPasswordVisibleStateProvider = StateProvider((ref) => false);
@@ -60,9 +62,11 @@ class LoginFormModel {
 
 // View Model / Notifier
 class LoginFormViewModel extends StateNotifier<LoginFormModel> {
+  final TokenStorageController tokenStorageManager;
   final AuthService authService;
 
-  LoginFormViewModel(this.authService) : super(LoginFormModel.initial());
+  LoginFormViewModel(this.authService, this.tokenStorageManager)
+      : super(LoginFormModel.initial());
 
   void validateEmail(String email) {
     // var emailState = state.email;
@@ -104,6 +108,13 @@ class LoginFormViewModel extends StateNotifier<LoginFormModel> {
       final response = await authService.login(request);
       final responseText = 'Access Token: ${response.token}';
       // 'Full Name: ${response.fullName}. Access Token: ${response.accessToken}.';
+
+      // Store the access token
+      final tokenStorage = await tokenStorageManager.getTokenStorage();
+      await tokenStorageManager.setTokenStorage(tokenStorage.copyWith(
+        accessToken: response.token,
+      ));
+
       state = state.copyWith(
           formState: AppFormState.success, successMessage: responseText);
     } catch (ex) {

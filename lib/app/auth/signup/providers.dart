@@ -70,7 +70,6 @@ class SignupFormViewModel extends StateNotifier<SignupFormModel> {
   SignupFormViewModel(this.authService) : super(SignupFormModel.initial());
 
   void validateFullName(String fullName) {
-    // var emailState = state.email;
     String? errorText;
     bool isValid = false;
     if (fullName.trim().isNotEmpty && fullName.trim().length >= 3) {
@@ -86,7 +85,6 @@ class SignupFormViewModel extends StateNotifier<SignupFormModel> {
   }
 
   void validateEmail(String email) {
-    // var emailState = state.email;
     String? errorText;
     bool isValid = false;
     if (email.trim().contains("@")) {
@@ -102,7 +100,6 @@ class SignupFormViewModel extends StateNotifier<SignupFormModel> {
   }
 
   void validatePassword(String password) {
-    // var emailState = state.email;
     String? errorText;
     bool isValid = false;
     if (password.trim().isNotEmpty && password.trim().length >= 8) {
