@@ -25,3 +25,5 @@ Here are a list of features / user stories I intend to implement.
 - A user should be able to view his / her name as well as logout via an app drawer.
 - A user should be able to login automatically on app startup if his/her
     session has not expired...
+- A user should be able to set a due date for a task
+- A user should receive a [persistent] phone notification if a task is due for today.
