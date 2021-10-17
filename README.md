@@ -2,6 +2,8 @@
 
 A task management mobile application built using Flutter.
 
+The application talks to this api: https://phalcorine-taskmaster-api.herokuapp.com/api
+
 ## Getting Started
 
 Here are a list of features / user stories I intend to implement.
