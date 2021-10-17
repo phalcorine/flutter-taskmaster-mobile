@@ -43,7 +43,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (state.formState == AppFormState.success) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.successMessage)));
-        ref.read(loginFormViewModelProvider.notifier).refresh();
+        ref.read(loginFormViewModelProvider.notifier).resetForm();
         Navigator.of(context).pushNamed(TaskListScreen.routeName);
       }
 

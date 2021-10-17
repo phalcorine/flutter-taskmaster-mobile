@@ -136,4 +136,8 @@ class SignupFormViewModel extends StateNotifier<SignupFormModel> {
   void refresh() {
     state = state.copyWith(formState: AppFormState.initial);
   }
+
+  void resetForm() {
+    state = SignupFormModel.initial();
+  }
 }

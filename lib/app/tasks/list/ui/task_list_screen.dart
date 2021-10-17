@@ -80,11 +80,9 @@ class TaskList extends StatelessWidget {
         ),
       );
     }
-    return Flexible(
-      child: ListView.builder(
-        itemBuilder: (builderContext, index) => TaskItem(tasks[index]),
-        itemCount: tasks.length,
-      ),
+    return ListView.builder(
+      itemBuilder: (builderContext, index) => TaskItem(tasks[index]),
+      itemCount: tasks.length,
     );
   }
 }

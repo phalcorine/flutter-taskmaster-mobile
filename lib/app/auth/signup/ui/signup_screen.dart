@@ -46,7 +46,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       if (state.formState == AppFormState.success) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.successMessage)));
-        ref.read(signupFormViewModelProvider.notifier).refresh();
+        ref.read(signupFormViewModelProvider.notifier).resetForm();
         Navigator.of(context).pop();
       }
 

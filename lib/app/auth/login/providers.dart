@@ -127,4 +127,8 @@ class LoginFormViewModel extends StateNotifier<LoginFormModel> {
   void refresh() {
     state = state.copyWith(formState: AppFormState.initial);
   }
+
+  void resetForm() {
+    state = LoginFormModel.initial();
+  }
 }
