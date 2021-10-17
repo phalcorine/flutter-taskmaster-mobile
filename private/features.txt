@@ -1,18 +1,10 @@
-# taskmaster_mobile
-
-A task management mobile application built using Flutter.
-
-## Getting Started
-
-Here are a list of features / user stories I intend to implement.
-
-### DONE:
+DONE:
 - A user should be able to create a new account.
 - A user should be able to login to an existing account.
 - A user should be able to view a list of his/her tasks.
 - A user should be able to add a new task.
 
-### TODO:
+TODO:
 - A user should be able to view the details of a task.
 - A user should be able to edit a task.
 - A user should be able to delete a task.
